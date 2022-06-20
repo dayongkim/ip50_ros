@@ -1,0 +1,19 @@
+<launch>
+  <!-- Prams -->
+  <arg name="set_base_frame" default="base_footprint"/>
+  <arg name="set_odom_frame" default="odom"/>
+  <arg name="set_map_frame"  default="map"/>
+  <arg name="configuration_basename" default="ip50_gl3_2d.lua"/>
+  <arg name="open_rviz" default="true"/>
+
+  <!-- SLAM -->
+  <node pkg="gmapping" type="slam_gmapping" name="ip50_gmapping" output="log">
+    <param name="base_frame" value="$(arg set_base_frame)"/>
+    <param name="odom_frame" value="$(arg set_odom_frame)"/>
+    <param name="map_frame"  value="$(arg set_map_frame)"/>
+    <rosparam command="load" file="$(find ip50_slam)/config/gmapping_params.yaml" />
+  </node>
+
+  <!-- rviz -->
+  <node pkg="rviz" type="rviz" name="rviz" args="-d $(find ip50_slam)/rviz/ip50_slam_rviz.rviz"/>
+</launch>

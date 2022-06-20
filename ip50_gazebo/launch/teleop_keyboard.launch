@@ -1,0 +1,7 @@
+<launch>
+<!-- teleop_twist_key -->
+  <node name="teleop_twist_keyboard" pkg="teleop_twist_keyboard" type="teleop_twist_keyboard.py" output="screen" >
+    <param name="speed" type="double" value="1.0"/>
+    <param name="turn" type="double" value="1.0"/>
+  </node>
+</launch>
